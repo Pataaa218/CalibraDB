@@ -1,5 +1,6 @@
 from tkinter import filedialog
 import os
+from time import sleep
 
 ct_title = "Select a calibration table."
 mdb_title = "Select a source database."
@@ -46,42 +47,36 @@ def findTankNum(s):
         errorType = 1
 
 # Read calibration table and catch important data
-def handleCalibrationTable(tabCalibration_path):
+def handleCalibrationTable(tabCalibration_path, feedback, GUI):
     global errorType, tNumber, tSize, tProduct, catchData, tHeightVolume
     if tabCalibration_path:
-        print("Calibration table path: ", tabCalibration_path)
         tHeightVolume = [0]
         catchData = False
         with open(tabCalibration_path, 'r') as file:
-            print("Scanning calibration table for required data.")
             for line in file:
                 line = line.strip()
+                feedback.set(f'Scanning file:\nTank n.{tNumber}\nTank size: {tSize}\nProduct: {tProduct}\nInactive zone: {tHeightVolume[0]}\nIndexed: {len(tHeightVolume)}')
+                GUI.update_idletasks()
+                sleep(0.01)
 # CATCHING HEIGHT-VOLUME DATA
                 if catchData and line != "":
                     _tmp = line.split()
-                    tHeightVolume.append(float(_tmp[1]))
+                    tHeightVolume.append(1000*float(_tmp[1]))
 # CATCHING TANK NUMBER, SIZE AND PRODUCT TYPE
                 elif findString(line, "Název"):
                     tNumber = findTankNum(line)
-                    print("Found tank number: ", tNumber)
                     _tmp = findSubstring(line, '(', ')')
                     tSize, tProduct = _tmp.split("; ", 1)
-                    print("Found tank product: ", tProduct)
-                    print("Found tank volume: ", tSize)
 # CATCH INACTIVE ZONE DATA
                 elif findString(line, "Neaktivní"):
                     _tmp = line.split(" ")
-                    tHeightVolume[0] = float(_tmp[2])
-                    print("Found inactive zone: ", tHeightVolume[0])
+                    tHeightVolume[0] = 1000*float(_tmp[2])
 # FIND BEGINING OF HEIGHT-VOLUME DATA
                 elif findString(line, "[cm]"):
                     catchData = True
             catchData = False
-            print("Finished reading calibration table. Collected data:")
-            print("tNumber:  ", tNumber)
-            print("tSize:    ", tSize)
-            print("tProduct: ", tProduct)
-            print("\nheight indexes: ", len(tHeightVolume))
+            feedback.set(f'Exctreacted data:\nTank n.{tNumber}\nTank size: {tSize}\nProduct: {tProduct}\nInactive zone: {tHeightVolume[0]}\nIndexed: {len(tHeightVolume)}\n\nPress CONFIRM to write, or\nselect a new file.')
+            GUI.update_idletasks()
     else:
         errorType = 2
 
@@ -89,11 +84,11 @@ def handleCalibrationTable(tabCalibration_path):
 def tmpFileDump():
     with open("betaDumpFile.txt", "w") as file:
         print("Writing to Dump file.")
-        file.write("Tank n.:   " + str(tNumber) + "\n")
-        file.write("Tank size: " + str(tSize) + "\n")
-        file.write("Product:   " + str(tProduct) + "\n\n")
+        file.write("tNumber:   " + str(tNumber) + "\n")
+        file.write("tSize: " + str(tSize) + "\n")
+        file.write("tProduct:   " + str(tProduct) + "\n\n")
         for i in range(len(tHeightVolume)):
             file.write(str(i) + "\t\t")
-            file.write(f"{tHeightVolume[i]:.3f}" + "\n") 
+            file.write(str(tHeightVolume[i]), "\n") 
         print("finished writing Dump file.")
 

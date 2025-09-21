@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.4" author="PygubuDesigner 0.41.4">
+  <project>
+    <settings>
+      <setting id="name">Monti_calibration_tables</setting>
+      <setting id="description">bla</setting>
+      <setting id="module_name">setupui</setting>
+      <setting id="template">codescript</setting>
+      <setting id="main_widget">mainwindow</setting>
+      <setting id="main_classname">Application</setting>
+      <setting id="main_menu" />
+      <setting id="output_dir">ui_out</setting>
+      <setting id="output_dir2" />
+      <setting id="import_tkvariables">True</setting>
+      <setting id="use_ttk_styledefinition_file">True</setting>
+      <setting id="use_i18n">False</setting>
+      <setting id="all_ids_attributes">False</setting>
+      <setting id="generate_code_onsave">False</setting>
+      <setting id="use_window_centering_code">False</setting>
+      <setting id="ttk_style_definition_file" />
+    </settings>
+    <customwidgets />
+  </project>
+  <object class="ttk.Frame" id="mainwindow" named="True">
+    <property name="borderwidth">5</property>
+    <property name="height">500</property>
+    <property name="relief">ridge</property>
+    <property name="width">1050</property>
+    <layout manager="pack">
+      <property name="side">top</property>
+    </layout>
+    <child>
+      <object class="ttk.Label" id="mainlabel" named="True">
+        <property name="font">{Times New Roman} 20 {bold}</property>
+        <property name="padding">5</property>
+        <property name="text" translatable="yes">Calibration Data Automation Tool</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">50</property>
+          <property name="width">700</property>
+          <property name="x">0</property>
+          <property name="y">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="db_select_button" named="True">
+        <property name="command" type="command" cbtype="simple">on_select_db_button_click</property>
+        <property name="padding">5</property>
+        <property name="text" translatable="yes">Select Database</property>
+        <layout manager="place">
+          <property name="anchor">w</property>
+          <property name="height">35</property>
+          <property name="width">150</property>
+          <property name="x">10</property>
+          <property name="y">75</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="ct_load_button" named="True">
+        <property name="command" type="command" cbtype="simple">on_load_ct_button_click</property>
+        <property name="padding">5</property>
+        <property name="text" translatable="yes">Load calibration table</property>
+        <layout manager="place">
+          <property name="anchor">w</property>
+          <property name="height">35</property>
+          <property name="width">150</property>
+          <property name="x">10</property>
+          <property name="y">125</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Entry" id="path_db" named="True">
+        <property name="font">{Times New Roman} 12 {}</property>
+        <property name="justify">left</property>
+        <property name="state">readonly</property>
+        <property name="text" translatable="yes">database file location</property>
+        <property name="textvariable">string:selected_db_path</property>
+        <layout manager="place">
+          <property name="anchor">w</property>
+          <property name="height">30</property>
+          <property name="width">500</property>
+          <property name="x">200</property>
+          <property name="y">75</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Entry" id="path_ct" named="True">
+        <property name="font">{Times New Roman} 12 {}</property>
+        <property name="justify">left</property>
+        <property name="state">readonly</property>
+        <property name="text" translatable="yes">calibration table file location</property>
+        <property name="textvariable">string:selected_ct_path</property>
+        <layout manager="place">
+          <property name="anchor">w</property>
+          <property name="height">30</property>
+          <property name="width">500</property>
+          <property name="x">200</property>
+          <property name="y">125</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Message" id="log_feedback1" named="True">
+        <property name="anchor">sw</property>
+        <property name="aspect">32000</property>
+        <property name="background">#f0f0f0</property>
+        <property name="font">{Courier New} 11 {}</property>
+        <property name="justify">left</property>
+        <property name="relief">sunken</property>
+        <property name="textvariable">string:txtbox_feedback_1</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">250</property>
+          <property name="width">340</property>
+          <property name="x">10</property>
+          <property name="y">170</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Message" id="log_feedback2" named="True">
+        <property name="anchor">nw</property>
+        <property name="aspect">32000</property>
+        <property name="background">#f0f0f0</property>
+        <property name="font">{Courier New} 11 {}</property>
+        <property name="justify">left</property>
+        <property name="relief">sunken</property>
+        <property name="text" translatable="yes">Scanning calibration table path for</property>
+        <property name="textvariable">string:txtbox_feedback_2</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">250</property>
+          <property name="width">340</property>
+          <property name="x">360</property>
+          <property name="y">170</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Separator" id="separator1">
+        <property name="orient">horizontal</property>
+        <layout manager="place">
+          <property name="anchor">w</property>
+          <property name="height">1</property>
+          <property name="width">710</property>
+          <property name="x">0</property>
+          <property name="y">160</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Separator" id="separator2">
+        <property name="orient">vertical</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">500</property>
+          <property name="width">1</property>
+          <property name="x">710</property>
+          <property name="y">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="multi_button" named="True">
+        <property name="command" type="command" cbtype="simple">on_multi_click</property>
+        <property name="state">normal</property>
+        <property name="text" translatable="yes">CONFIRM</property>
+        <property name="textvariable">string:multibutton_str</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">50</property>
+          <property name="width">120</property>
+          <property name="x">10</property>
+          <property name="y">430</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="logo_monti" named="True">
+        <property name="font">{Courier} 20 {}</property>
+        <property name="image">logo_Monti.png</property>
+        <property name="text" translatable="yes">logo_Monti.png</property>
+        <layout manager="place">
+          <property name="anchor">ne</property>
+          <property name="width">225</property>
+          <property name="x">970</property>
+          <property name="y">25</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="detail" named="True">
+        <property name="anchor">n</property>
+        <property name="foreground">#9f9f9f</property>
+        <property name="text" translatable="yes">ULTRA database calibration table update tool</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="width">240</property>
+          <property name="x">460</property>
+          <property name="y">5</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="dev_detail" named="True">
+        <property name="anchor">e</property>
+        <property name="foreground">#9f9f9f</property>
+        <property name="text" translatable="yes">Developed by Poxmin, MONTI systems s.r.o.</property>
+        <layout manager="place">
+          <property name="anchor">se</property>
+          <property name="width">280</property>
+          <property name="x">700</property>
+          <property name="y">485</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="version_detail" named="True">
+        <property name="anchor">e</property>
+        <property name="compound">top</property>
+        <property name="cursor">arrow</property>
+        <property name="foreground">#9f9f9f</property>
+        <property name="text" translatable="yes">Version 1.0</property>
+        <property name="textvariable">string:version_str</property>
+        <layout manager="place">
+          <property name="anchor">se</property>
+          <property name="width">150</property>
+          <property name="x">1035</property>
+          <property name="y">485</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Canvas" id="grpaher" named="True">
+        <property name="borderwidth">1</property>
+        <property name="relief">sunken</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">300</property>
+          <property name="width">300</property>
+          <property name="x">725</property>
+          <property name="y">150</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>
