@@ -8,8 +8,8 @@ nachází ve fázi BETA testování a není nijak
 stabilní. Za jeho užití a případné škody
 NERUČÍM!
 Pro uchování bezpečnosti, stahujte program
-pouze z této stránky, nebo si jej sestavte
-sami.
+pouze z tohoto repa, nebo si jej sestavte
+sami pomocí pyinstaller.
 
 ## Základní funkce:
 Hlavní funkce pro běžné používání.
