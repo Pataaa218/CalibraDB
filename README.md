@@ -16,11 +16,11 @@ Hlavní funkce pro běžné používání.
 1) intuitivní uživatelské rozhraní
 2) čtení kalibračních .txt souborů
 3) extrahování dat ze souboru:
-    • číslo nádrže
-    • objem celé nádrže [m3]
-    • název produktu v nádrži
-    • objem neaktivní zóny [l]
-    • kalibrační tabulka [l/10mm]
+    - číslo nádrže
+    - objem celé nádrže [m3]
+    - název produktu v nádrži
+    - objem neaktivní zóny [l]
+    - kalibrační tabulka [l/10mm]
 4) zápis dat do databáze
 
 ## Doplňující funkce:
