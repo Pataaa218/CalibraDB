@@ -1,4 +1,6 @@
 # CalibraDB
+Program pro aktualizaci databáze a
+zapisování kalibračních tabulek.
 ## Disclaimer - BETA
 Upozornění, toto je dokumentace pro hotový
 a plně funkční program. Aktuálně se projekt
